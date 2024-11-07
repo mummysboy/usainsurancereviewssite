@@ -1,0 +1,3 @@
+[submodule "insurance-form"]
+	path = insurance-form
+	url = https://github.com/mummysboy/usainsurancereviewssite.git
