@@ -1,0 +1,71 @@
+/* src/components/ZipCodePage.css */
+
+.zip-code-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72vh; /* Full viewport height */
+  background-color: #f0f8f6; /* Light green background */
+}
+
+.zip-code-card {
+  background-color: #ffffff; /* White background */
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  max-width: 500px;
+  text-align: center;
+}
+
+h1 {
+  color: #333333; /* Dark text color for contrast */
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+
+.input-container {
+  margin-bottom: 1.5rem;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e74c3c; /* Red color for the question */
+}
+
+.zip-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.get-started-button {
+  background-color: #28a745; /* Primary green color */
+  color: #ffffff; /* White text */
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.get-started-button:hover {
+  background-color: #218838; /* Darker green for hover effect */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.get-started-button:active {
+  transform: scale(0.98); /* Press-down effect */
+}
+
+.error-message {
+  color: red;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
