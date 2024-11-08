@@ -2,7 +2,8 @@
 import React, { useContext } from "react";
 import { FormDataContext } from "../contexts/FormDataContext";
 import { useNavigate } from "react-router-dom";
-import "./../Form.css"; // Import the shared styles
+import "./../Summary.css"; // Ensure this path is correct and the file is present
+
 import { CSSTransition } from "react-transition-group";
 
 const Summary = () => {
@@ -13,16 +14,24 @@ const Summary = () => {
     navigate(formData.homeOwnership === "Yes" ? "/step-six" : "/step-five");
   };
 
-  const handleFinish = () => {
-    // Navigate to StepEmail instead of completing the process
-    navigate("/loading-deals");
+  const handleFinish = (event) => {
+    // Get the clicked button element
+    const button = event.currentTarget;
+
+    // Add the 'green-active' class to make the button stay green
+    button.classList.add("green-active");
+
+    // Delay the navigation to show the button effect
+    setTimeout(() => {
+      navigate("/loading-deals");
+    }, 325); // Delay for noticeable green effect
   };
 
   return (
     <CSSTransition
       in={true}
       appear={true}
-      timeout={100}
+      timeout={1500}
       classNames="fade-slide"
     >
       <div className="form-container">
@@ -48,13 +57,13 @@ const Summary = () => {
             <strong>Owns Home:</strong> {formData.homeOwnership}
           </p>
           <p>
-            <strong>Interested in Bundling Insurance:</strong>
+            <strong>Interested in Bundling Insurance:</strong>{" "}
             {formData.bundleInterest}
           </p>
         </div>
 
         <div className="buttons-container">
-          <button onClick={handleFinish}>Finish</button>
+          <button onClick={(event) => handleFinish(event)}>Finish</button>
           <button className="secondary-button" onClick={handleBack}>
             Back to Edit
           </button>

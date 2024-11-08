@@ -13,16 +13,27 @@ const StepFive = () => {
     navigate("/step-four");
   };
 
-  const handleNext = (homeOwnership) => {
+  const handleNext = (homeOwnership, event) => {
+    // Get the clicked button element
+    const button = event.currentTarget;
+
+    // Add the 'green-active' class to make the button stay green
+    button.classList.add("green-active");
+
+    // Set form data
     setFormData({ ...formData, homeOwnership });
-    navigate(formData.homeOwnership === "Yes" ? "/step-six" : "/summary");
+
+    // Determine the next step based on home ownership and delay navigation
+    setTimeout(() => {
+      navigate(homeOwnership === "Yes" ? "/step-six" : "/summary");
+    }, 375); // Delay for noticeable green effect
   };
 
   return (
     <CSSTransition
       in={true}
       appear={true}
-      timeout={500}
+      timeout={1500}
       classNames="fade-slide"
     >
       <div className="form-container">
@@ -36,7 +47,7 @@ const StepFive = () => {
             className={`option-button ${
               formData.homeOwnership === "Yes" ? "selected" : ""
             }`}
-            onClick={() => handleNext("Yes")}
+            onClick={(event) => handleNext("Yes", event)}
           >
             Yes
           </button>
@@ -44,7 +55,7 @@ const StepFive = () => {
             className={`option-button ${
               formData.homeOwnership === "No" ? "selected" : ""
             }`}
-            onClick={() => handleNext("No")}
+            onClick={(event) => handleNext("No", event)}
           >
             No
           </button>

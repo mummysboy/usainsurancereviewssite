@@ -13,16 +13,27 @@ const StepTwo = () => {
     navigate("/step-one");
   };
 
-  const handleNext = (ageGroup) => {
+  const handleNext = (ageGroup, event) => {
+    // Get the clicked button element
+    const button = event.currentTarget;
+
+    // Add the 'green-active' class to make the button stay green
+    button.classList.add("green-active");
+
+    // Set form data
     setFormData({ ...formData, ageGroup });
-    navigate("/step-three");
+
+    // Delay the navigation to show the button effect
+    setTimeout(() => {
+      navigate("/step-three");
+    }, 450); // Delay for noticeable green effect
   };
 
   return (
     <CSSTransition
       in={true}
       appear={true}
-      timeout={500}
+      timeout={1500}
       classNames="fade-slide"
     >
       <div className="form-container">
@@ -46,7 +57,7 @@ const StepTwo = () => {
               className={`option-button ${
                 formData.ageGroup === ageRange ? "selected" : ""
               }`}
-              onClick={() => handleNext(ageRange)}
+              onClick={(event) => handleNext(ageRange, event)}
             >
               {ageRange}
             </button>

@@ -13,16 +13,27 @@ const StepOne = () => {
     navigate("/");
   };
 
-  const handleNext = (insured) => {
-    navigate("/step-two");
+  const handleNext = (insured, event) => {
+    // Get the clicked button element
+    const button = event.currentTarget;
+
+    // Add the 'green-active' class to make the button stay green
+    button.classList.add("green-active");
+
+    // Update the form data
     setFormData({ ...formData, insured });
+
+    // Delay the navigation to show the button effect
+    setTimeout(() => {
+      navigate("/step-two");
+    }, 500); // Delay of 1000ms for noticeable green effect
   };
 
   return (
     <CSSTransition
       in={true}
       appear={true}
-      timeout={500}
+      timeout={1500}
       classNames="fade-slide"
     >
       <div className="form-container">
@@ -36,7 +47,7 @@ const StepOne = () => {
             className={`option-button ${
               formData.insured === "Yes" ? "selected" : ""
             }`}
-            onClick={() => handleNext("Yes")}
+            onClick={(event) => handleNext("Yes", event)}
           >
             Yes
           </button>
@@ -44,7 +55,7 @@ const StepOne = () => {
             className={`option-button ${
               formData.insured === "No" ? "selected" : ""
             }`}
-            onClick={() => handleNext("No")}
+            onClick={(event) => handleNext("No", event)}
           >
             No
           </button>

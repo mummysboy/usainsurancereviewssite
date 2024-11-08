@@ -1,4 +1,4 @@
-// src/components/StepOne.js
+// src/components/StepThree.js
 import React, { useContext } from "react";
 import { FormDataContext } from "../contexts/FormDataContext";
 import { useNavigate } from "react-router-dom";
@@ -13,16 +13,27 @@ const StepThree = () => {
     navigate("/step-two");
   };
 
-  const handleNext = (numDrivers) => {
+  const handleNext = (numDrivers, event) => {
+    // Get the clicked button element
+    const button = event.currentTarget;
+
+    // Add the 'green-active' class to make the button stay green
+    button.classList.add("green-active");
+
+    // Set form data
     setFormData({ ...formData, numDrivers });
-    navigate("/step-four");
+
+    // Delay the navigation to show the button effect
+    setTimeout(() => {
+      navigate("/step-four");
+    }, 425); // Delay for noticeable green effect
   };
 
   return (
     <CSSTransition
       in={true}
       appear={true}
-      timeout={500}
+      timeout={1500}
       classNames="fade-slide"
     >
       <div className="form-container">
@@ -36,7 +47,7 @@ const StepThree = () => {
             className={`option-button ${
               formData.numDrivers === "1" ? "selected" : ""
             }`}
-            onClick={() => handleNext("1")}
+            onClick={(event) => handleNext("1", event)}
           >
             1
           </button>
@@ -44,7 +55,7 @@ const StepThree = () => {
             className={`option-button ${
               formData.numDrivers === "2" ? "selected" : ""
             }`}
-            onClick={() => handleNext("2")}
+            onClick={(event) => handleNext("2", event)}
           >
             2
           </button>
@@ -52,7 +63,7 @@ const StepThree = () => {
             className={`option-button ${
               formData.numDrivers === "3" ? "selected" : ""
             }`}
-            onClick={() => handleNext("3")}
+            onClick={(event) => handleNext("3", event)}
           >
             3
           </button>
@@ -60,7 +71,7 @@ const StepThree = () => {
             className={`option-button ${
               formData.numDrivers === "4" ? "selected" : ""
             }`}
-            onClick={() => handleNext("4")}
+            onClick={(event) => handleNext("4", event)}
           >
             4
           </button>

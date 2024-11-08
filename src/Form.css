@@ -7,6 +7,7 @@
   background-color: #ffffff; /* White background for the form */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
   border-radius: 8px;
+  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation when a form step is rendered */
 }
 
 /* Styling headers */
@@ -44,93 +45,6 @@ button {
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 1rem;
-}
-
-button:hover {
-  background-color: #218838; /* Darker green on hover */
-}
-
-/* Secondary button */
-.secondary-button {
-  background-color: #eddf76ab; /* Gray color for secondary actions */
-}
-
-.secondary-button:hover {
-  background-color: #d8c95cab; /* Darker gray on hover */
-}
-
-/* Summary page details */
-.summary-details p {
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  background-color: #d4edda; /* Light green background for each data point */
-  border-radius: 4px;
-}
-
-/* Container for navigation buttons */
-.buttons-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1.5rem;
-}
-
-/* Default styling for larger screens (tablet/desktop) is already in place from previous steps */
-
-/* For tablets (768px and below) */
-@media (max-width: 768px) {
-  .form-container {
-    width: 90%;
-    padding: 1.5rem;
-  }
-
-  button {
-    width: 100%; /* Full-width buttons for easier tapping */
-    margin: 1rem 0; /* Add spacing between buttons */
-  }
-
-  .buttons-container {
-    display: flex;
-    justify-content: space-between; /* Evenly space the buttons */
-    flex-wrap: wrap; /* Wrap if needed for smaller screens */
-  }
-}
-
-/* For mobile screens (480px and below) */
-@media (max-width: 480px) {
-  .form-container {
-    width: 95%;
-    padding: 1rem;
-    font-size: 0.9rem; /* Reduce font size slightly for better fit */
-  }
-
-  h1 {
-    font-size: 1.5rem; /* Smaller header on mobile */
-  }
-
-  select,
-  input {
-    padding: 0.5rem;
-    font-size: 1rem;
-  }
-
-  button {
-    padding: 0.6rem 1rem;
-  }
-}
-
-/* src/Form.css */
-
-/* Add a smooth transition to buttons for color changes */
-button {
-  background-color: #28a745;
-  color: #ffffff;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease; /* Added transition for smooth changes */
   margin-right: 1rem;
 }
@@ -144,22 +58,11 @@ button:active {
   transform: scale(0.95); /* Press-in effect for click */
 }
 
-/* src/Form.css */
-
-/* Animation for form entry */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.form-container {
-  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation when a form step is rendered */
+/* Green button effect when active (for staying green until navigation completes) */
+.option-button.green-active {
+  background-color: #28a745 !important; /* Set the background to green */
+  color: white !important; /* Change text color to white for contrast */
+  transition: background-color 0.3s ease-in-out; /* Smooth transition to green */
 }
 
 /* Styling for the options container */
@@ -208,6 +111,29 @@ button:active {
   }
 }
 
+/* Page transition animation for smoother effect */
+.fade-slide-enter {
+  opacity: 0;
+  transform: translateX(-100%); /* Start from the left side */
+}
+
+.fade-slide-enter-active {
+  opacity: 1;
+  transform: translateX(0); /* Slide into the center */
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.fade-slide-exit {
+  opacity: 1;
+  transform: translateX(0); /* Start from the center */
+}
+
+.fade-slide-exit-active {
+  opacity: 0;
+  transform: translateX(100%); /* Slide out to the right */
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
 /* Progress bar container */
 .progress-bar-container {
   width: 100%;
@@ -230,103 +156,62 @@ button:active {
   transition: width 1s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth easing transition for more dynamic effect */
 }
 
-/* Slide-in and fade-in animation */
-.fade-slide-appear,
-.fade-slide-enter {
-  opacity: 0;
-  transform: translateX(-20px); /* Start slightly to the left */
+/* Animation for form entry */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.fade-slide-appear-active,
-.fade-slide-enter-active {
-  opacity: 1;
-  transform: translateX(0); /* End in the correct position */
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.fade-slide-exit {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.fade-slide-exit-active {
-  opacity: 0;
-  transform: translateX(20px); /* Slide out to the right */
-  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
-}
-
-/* Email input container styling */
-.email-container {
-  margin-top: 1rem;
-  text-align: left;
-}
-
-.email-container label {
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.email-container input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  margin-bottom: 1.5rem;
-}
-
-/* Styling for the Savings Label - More Subtle Version */
-.savings-label {
-  display: block; /* Full-width to ensure proper alignment */
-  text-align: center; /* Center the text */
-  font-family: "Roboto", sans-serif; /* Match form styling for consistency */
-  font-size: 1.3rem; /* Slightly larger font to draw attention */
-  font-weight: 500; /* Semi-bold, but less intense than full bold */
-  color: #4f4f4f; /* Dark grey color for a subtle and professional look */
-  padding: 0.75rem; /* Moderate padding for balance */
-  margin-bottom: 1.5rem; /* Space below the label */
-  border-radius: 6px; /* Slightly rounded corners for a subtle touch */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01); /* Very light shadow for a soft lift */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for interactions */
-}
-
-.age-group-container {
+/* Container for navigation buttons */
+.buttons-container {
   display: flex;
-  flex-wrap: wrap; /* Allows buttons to wrap into rows */
-  justify-content: space-around; /* Creates space between buttons */
-  max-width: 300px; /* Adjust as needed for container width */
-  margin: 0 auto; /* Center the container horizontally */
-  gap: 20px; /* Add space between the buttons */
+  justify-content: space-between;
+  margin-top: 1.5rem;
 }
 
-/* Each button styling */
-.option-button1 {
-  flex: 1 1 calc(45%); /* Makes each button take about half the container, adjusted for spacing */
-  padding: 15px;
-  font-size: 16px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  box-sizing: border-box; /* Ensures padding and border are included in width calculation */
+/* Additional responsive styles */
+@media (max-width: 768px) {
+  .form-container {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  button {
+    width: 100%; /* Full-width buttons for easier tapping */
+    margin: 1rem 0; /* Add spacing between buttons */
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: space-between; /* Evenly space the buttons */
+    flex-wrap: wrap; /* Wrap if needed for smaller screens */
+  }
 }
 
-/* Selected button styling for visual indication */
-.option-button.selected1 {
-  background-color: #4caf50; /* Green color to indicate selection */
-  color: white;
-}
+@media (max-width: 480px) {
+  .form-container {
+    width: 95%;
+    padding: 1rem;
+    font-size: 0.9rem; /* Reduce font size slightly for better fit */
+  }
 
-/* Hover effect for buttons */
-.option-button1:hover {
-  background-color: #f0f0f0; /* Light gray on hover */
-  transform: translateY(-3px);
-}
+  h1 {
+    font-size: 1.5rem; /* Smaller header on mobile */
+  }
 
-/* If there's an odd number of buttons, the last one is centered */
-.option-button1:nth-last-child(1):nth-child(odd) {
-  flex-basis: 100%; /* Make the last button full-width */
-  text-align: center;
+  select,
+  input {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 0.6rem 1rem;
+  }
 }

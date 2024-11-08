@@ -10,19 +10,30 @@ const StepFour = () => {
   const navigate = useNavigate();
 
   const handlePrevious = () => {
-    navigate("/Step-three");
+    navigate("/step-three");
   };
 
-  const handleNext = (numVehicles) => {
+  const handleNext = (numVehicles, event) => {
+    // Get the clicked button element
+    const button = event.currentTarget;
+
+    // Add the 'green-active' class to make the button stay green
+    button.classList.add("green-active");
+
+    // Set form data
     setFormData({ ...formData, numVehicles });
-    navigate("/Step-five");
+
+    // Delay the navigation to show the button effect
+    setTimeout(() => {
+      navigate("/step-five");
+    }, 400); // Delay for noticeable green effect
   };
 
   return (
     <CSSTransition
       in={true}
       appear={true}
-      timeout={500}
+      timeout={1500}
       classNames="fade-slide"
     >
       <div className="form-container">
@@ -40,7 +51,7 @@ const StepFour = () => {
             className={`option-button ${
               formData.numVehicles === "Yes" ? "selected" : ""
             }`}
-            onClick={() => handleNext("Yes")}
+            onClick={(event) => handleNext("Yes", event)}
           >
             Yes
           </button>
@@ -48,7 +59,7 @@ const StepFour = () => {
             className={`option-button ${
               formData.numVehicles === "No" ? "selected" : ""
             }`}
-            onClick={() => handleNext("No")}
+            onClick={(event) => handleNext("No", event)}
           >
             No
           </button>

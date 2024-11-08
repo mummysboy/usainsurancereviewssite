@@ -13,16 +13,27 @@ const StepSix = () => {
     navigate("/step-five");
   };
 
-  const handleNext = (bundleInterest) => {
+  const handleNext = (bundleInterest, event) => {
+    // Get the clicked button element
+    const button = event.currentTarget;
+
+    // Add the 'green-active' class to make the button stay green
+    button.classList.add("green-active");
+
+    // Set form data
     setFormData({ ...formData, bundleInterest });
-    navigate("/summary");
+
+    // Delay navigation to show the button effect
+    setTimeout(() => {
+      navigate("/summary");
+    }, 350); // Delay for noticeable green effect
   };
 
   return (
     <CSSTransition
       in={true}
       appear={true}
-      timeout={500}
+      timeout={1500}
       classNames="fade-slide"
     >
       <div className="form-container">
@@ -33,7 +44,7 @@ const StepSix = () => {
         <h1>
           Would You be Interested in Bundling Your Auto and Home Insurance?
         </h1>
-        <label htmlFor="numVehicles" className="savings-label">
+        <label htmlFor="bundleInterest" className="savings-label">
           Bundle it Can Save Up to 30%
         </label>
         <div className="options-container">
@@ -41,7 +52,7 @@ const StepSix = () => {
             className={`option-button ${
               formData.bundleInterest === "Yes" ? "selected" : ""
             }`}
-            onClick={() => handleNext("Yes")}
+            onClick={(event) => handleNext("Yes", event)}
           >
             Yes
           </button>
@@ -49,13 +60,12 @@ const StepSix = () => {
             className={`option-button ${
               formData.bundleInterest === "No" ? "selected" : ""
             }`}
-            onClick={() => handleNext("No")}
+            onClick={(event) => handleNext("No", event)}
           >
             No
           </button>
         </div>
         <div className="buttons-container">
-          <button onClick={handleNext}>Next</button>
           <button className="secondary-button" onClick={handlePrevious}>
             Previous
           </button>
