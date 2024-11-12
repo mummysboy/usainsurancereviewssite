@@ -4,7 +4,7 @@ import { FormDataContext } from "../contexts/FormDataContext";
 import { useNavigate } from "react-router-dom";
 import "./../Form.css"; // Import your stylesheet here
 import { CSSTransition } from "react-transition-group";
-import crash from "././images/crash.jpeg";
+import crash from "./../images/crash.jpeg";
 const StepOne = () => {
   const { formData, setFormData } = useContext(FormDataContext);
   const navigate = useNavigate();
