@@ -1,17 +1,51 @@
 // src/components/ZipCodePage.js
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { FormDataContext } from "../contexts/FormDataContext";
 import "./../ZipCodePage.css"; // Custom CSS file for styling
 import Header from "./Header";
 import Footer from "./Footer";
+import insurance1 from "./../images/insurance1.jpeg";
 
 const ZipCodePage = () => {
   const navigate = useNavigate();
   const { formData, setFormData } = useContext(FormDataContext);
   const [zipCode, setZipCode] = useState(formData.zipCode || "");
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    // Meta Pixel Code Initialization
+    !(function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () {
+        n.callMethod
+          ? n.callMethod.apply(n, arguments)
+          : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = !0;
+      n.version = "2.0";
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = !0;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    })(
+      window,
+      document,
+      "script",
+      "https://connect.facebook.net/en_US/fbevents.js"
+    );
+
+    // Initialize the Pixel with your Pixel ID
+    fbq("init", "1102235601240222");
+
+    // Track page view when the component loads
+    fbq("track", "PageView");
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +58,9 @@ const ZipCodePage = () => {
     }
 
     setErrorMessage("");
+
+    // Track conversion event when the user submits the form (ad click event)
+    fbq("track", "Lead", { value: 1.0, currency: "USD" });
 
     // Add the green-active effect to the button
     const submitButton = e.target.querySelector(".get-started-button");
@@ -47,10 +84,16 @@ const ZipCodePage = () => {
     >
       <div className="container">
         <Header />
-        <div className="zip-code-container">
+        <div className="content-container">
+          <img
+            src={insurance1}
+            alt="Save on Insurance Banner"
+            className="banner-image"
+          />
           <div className="zip-code-card">
             <h1>
-              Save Big on Insurance by Comparing the Top Providers in Your Area
+              Better Coverage, Better Costs Compare Top Insurance Providers
+              Today
             </h1>
             <form onSubmit={handleSubmit}>
               <div className="input-container">

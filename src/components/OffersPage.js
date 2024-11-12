@@ -26,6 +26,27 @@ const OffersPage = () => {
       MediaAlphaExchange__load('mediaalpha_placeholder');
     `;
     document.body.appendChild(script);
+
+    // Add event listener for ad clicks to trigger a Facebook Pixel Lead event
+    const adContainer = document.getElementById("mediaalpha_placeholder");
+
+    const handleAdClick = () => {
+      // Trigger Facebook Lead event
+      if (window.fbq) {
+        fbq("track", "Lead");
+      }
+    };
+
+    if (adContainer) {
+      adContainer.addEventListener("click", handleAdClick);
+    }
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      if (adContainer) {
+        adContainer.removeEventListener("click", handleAdClick);
+      }
+    };
   }, [formData.zipCode]);
 
   return (

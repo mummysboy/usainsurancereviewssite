@@ -215,3 +215,14 @@ button:active {
     padding: 0.6rem 1rem;
   }
 }
+.form-image {
+  width: 100%; /* Let the image take up the full width of its container */
+  max-width: 450px; /* Limit the width so it does not get too large */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 250px; /* Restrict height for consistency */
+  border-radius: 12px; /* Slightly larger rounded corners for a softer, more modern feel */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow for added depth */
+  object-fit: cover; /* Ensure the image covers the container nicely without distortion */
+  margin: 0 auto 20px; /* Center the image horizontally, add spacing below */
+  display: block; /* Make the image a block element to center it properly */
+}

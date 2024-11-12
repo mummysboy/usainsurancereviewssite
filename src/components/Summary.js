@@ -24,7 +24,7 @@ const Summary = () => {
     // Delay the navigation to show the button effect
     setTimeout(() => {
       navigate("/loading-deals");
-    }, 325); // Delay for noticeable green effect
+    }, 400); // Delay for noticeable green effect
   };
 
   return (

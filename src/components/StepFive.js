@@ -26,7 +26,7 @@ const StepFive = () => {
     // Determine the next step based on home ownership and delay navigation
     setTimeout(() => {
       navigate(homeOwnership === "Yes" ? "/step-six" : "/summary");
-    }, 375); // Delay for noticeable green effect
+    }, 400); // Delay for noticeable green effect
   };
 
   return (

@@ -26,7 +26,7 @@ const StepTwo = () => {
     // Delay the navigation to show the button effect
     setTimeout(() => {
       navigate("/step-three");
-    }, 450); // Delay for noticeable green effect
+    }, 400); // Delay for noticeable green effect
   };
 
   return (

@@ -93,3 +93,46 @@
   transform: translateX(100%); /* Slide out to the right */
   transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
 }
+
+/* Container that holds the image and form in a vertical stack */
+.content-container {
+  display: flex; /* Create a flexbox container */
+  flex-direction: column; /* Stack image and form vertically */
+  align-items: center; /* Center the content horizontally */
+  padding: 20px;
+  max-width: 600px; /* Adjust the width for a visually balanced design */
+  margin: 0 auto; /* Center the container horizontally */
+  gap: 20px; /* Add space between the image and form */
+}
+
+/* Styling for the image */
+.banner-image {
+  width: 90%; /* Make image take full width of its container */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 500px; /* Limit maximum size to maintain readability */
+  border-radius: 8px; /* Optional: rounded corners */
+  object-fit: cover; /* Ensure the image fills its container nicely */
+}
+
+/* Styling for the form container */
+.zip-code-card {
+  width: 100%;
+  max-width: 500px; /* Set a maximum width for the form for good layout */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px;
+  background-color: #fff; /* White background */
+  text-align: center;
+}
+
+/* Mobile responsiveness (this may not be necessary if stacked vertically) */
+@media (max-width: 768px) {
+  .content-container {
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  .banner-image,
+  .zip-code-card {
+    max-width: 90%; /* Adjust the maximum width for smaller devices */
+  }
+}

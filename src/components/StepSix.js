@@ -26,7 +26,7 @@ const StepSix = () => {
     // Delay navigation to show the button effect
     setTimeout(() => {
       navigate("/summary");
-    }, 350); // Delay for noticeable green effect
+    }, 400); // Delay for noticeable green effect
   };
 
   return (

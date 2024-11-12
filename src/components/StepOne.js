@@ -4,7 +4,7 @@ import { FormDataContext } from "../contexts/FormDataContext";
 import { useNavigate } from "react-router-dom";
 import "./../Form.css"; // Import your stylesheet here
 import { CSSTransition } from "react-transition-group";
-
+import crash from "././images/crash.jpeg";
 const StepOne = () => {
   const { formData, setFormData } = useContext(FormDataContext);
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const StepOne = () => {
     // Delay the navigation to show the button effect
     setTimeout(() => {
       navigate("/step-two");
-    }, 500); // Delay of 1000ms for noticeable green effect
+    }, 400); // Delay of 1000ms for noticeable green effect
   };
 
   return (
@@ -37,6 +37,7 @@ const StepOne = () => {
       classNames="fade-slide"
     >
       <div className="form-container">
+        <img src={crash} alt="Car crash" className="form-image" />
         {/* Progress bar container with dynamic width */}
         <div className="progress-bar-container">
           <div className="progress-bar" style={{ width: "5%" }}></div>
