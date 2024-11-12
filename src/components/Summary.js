@@ -1,16 +1,27 @@
 // src/components/Summary.js
-import React, { useContext } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import { FormDataContext } from "../contexts/FormDataContext";
 import { useNavigate } from "react-router-dom";
 import "./../Summary.css"; // Ensure this path is correct and the file is present
-
 import { CSSTransition } from "react-transition-group";
 
 const Summary = () => {
   const { formData } = useContext(FormDataContext);
   const navigate = useNavigate();
+  const timeoutRef = useRef(null); // Ref to keep track of the timeout for cleanup
+  const finishButtonRef = useRef(null); // Ref for the finish button
+
+  useEffect(() => {
+    // Cleanup the timeout if the component unmounts before the timeout is finished
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleBack = () => {
+    // Navigate to previous step based on form data
     navigate(formData.homeOwnership === "Yes" ? "/step-six" : "/step-five");
   };
 
@@ -21,8 +32,11 @@ const Summary = () => {
     // Add the 'green-active' class to make the button stay green
     button.classList.add("green-active");
 
+    // Disable the button to prevent repeated clicks
+    button.disabled = true;
+
     // Delay the navigation to show the button effect
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       navigate("/loading-deals");
     }, 400); // Delay for noticeable green effect
   };
@@ -63,7 +77,13 @@ const Summary = () => {
         </div>
 
         <div className="buttons-container">
-          <button onClick={(event) => handleFinish(event)}>Finish</button>
+          <button
+            ref={finishButtonRef}
+            className="finish-button"
+            onClick={(event) => handleFinish(event)}
+          >
+            Finish
+          </button>
           <button className="secondary-button" onClick={handleBack}>
             Back to Edit
           </button>
