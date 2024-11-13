@@ -67,3 +67,12 @@
     text-align: center;
   }
 }
+
+/* Styling for the image */
+.banner-image {
+  width: 90%; /* Make image take full width of its container */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 500px; /* Limit maximum size to maintain readability */
+  border-radius: 8px; /* Optional: rounded corners */
+  object-fit: cover; /* Ensure the image fills its container nicely */
+}

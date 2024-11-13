@@ -7,6 +7,8 @@ import "./../ZipCodePage.css"; // Custom CSS file for styling
 import Header from "./Header";
 import Footer from "./Footer";
 import insurance1 from "./../images/insurance1.jpeg";
+import loading from "./../images/loading.png"; // Placeholder image for lazy loading
+import LazyImage from "./LazyImage"; // Lazy loading component
 
 const ZipCodePage = () => {
   const navigate = useNavigate();
@@ -85,10 +87,11 @@ const ZipCodePage = () => {
       <div className="container">
         <Header />
         <div className="content-container">
-          <img
+          <LazyImage
             src={insurance1}
             alt="Save on Insurance Banner"
             className="banner-image"
+            placeholder={loading}
           />
           <div className="zip-code-card">
             <h1>

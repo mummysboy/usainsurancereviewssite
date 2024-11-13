@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import "./../Form.css"; // Import your stylesheet here
 import { CSSTransition } from "react-transition-group";
 import crash from "./../images/crash.jpeg";
+import loading from "./../images/loading.png"; // Placeholder image for lazy loading
+import LazyImage from "./LazyImage"; // Lazy loading component
+
 const StepOne = () => {
   const { formData, setFormData } = useContext(FormDataContext);
   const navigate = useNavigate();
@@ -37,7 +40,14 @@ const StepOne = () => {
       classNames="fade-slide"
     >
       <div className="form-container">
-        <img src={crash} alt="Car crash" className="form-image" />
+        <div className="content-container">
+          <LazyImage
+            src={crash}
+            alt="Get Insured Today"
+            className="banner-image"
+            placeholder={loading}
+          />
+        </div>
         {/* Progress bar container with dynamic width */}
         <div className="progress-bar-container">
           <div className="progress-bar" style={{ width: "5%" }}></div>

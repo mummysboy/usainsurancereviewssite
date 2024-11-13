@@ -64,7 +64,13 @@ const OffersPage = () => {
               We've Matched You with Great Offers in{" "}
               <span>{formData.city}</span>!
             </h2>
-            <p className="subtext">See below for details.</p>
+            <p className="subtext">
+              USA Insurance Reviews works with many reverse-bidding insurance
+              companies. Based on your answers, we have matched you with the top
+              aggregator in your area that can get you the best possible deal.
+            </p>
+            Click View My Quote to see the best prices.
+            <p></p>
           </div>
 
           <div className="offers-list">
