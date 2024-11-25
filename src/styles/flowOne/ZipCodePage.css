@@ -1,0 +1,171 @@
+/* Container styling */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa; /* Light background color */
+}
+
+.zip-code-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.zip-code-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  border-radius: 8px;
+  text-align: center;
+}
+
+.input-container {
+  margin-bottom: 1.5rem;
+}
+
+.input-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.zip-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.error-message {
+  color: #dc3545; /* Red for error messages */
+  margin-top: 0.5rem;
+}
+
+/* Button styling */
+.get-started-button {
+  background-color: #28a745; /* Primary button color */
+  color: #ffffff; /* White text */
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.get-started-button:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.get-started-button:active {
+  transform: scale(0.95); /* Pressed-in effect */
+}
+
+.get-started-button.green-active {
+  background-color: #28a745 !important; /* Green color for active state */
+  color: #ffffff !important; /* White text for better contrast */
+}
+
+/* Fade-slide transition */
+.fade-slide-enter {
+  opacity: 0;
+  transform: translateX(-100%); /* Start from the left side */
+}
+
+.fade-slide-enter-active {
+  opacity: 1;
+  transform: translateX(0); /* Slide into the center */
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.fade-slide-exit {
+  opacity: 1;
+  transform: translateX(0); /* Start from the center */
+}
+
+.fade-slide-exit-active {
+  opacity: 0;
+  transform: translateX(100%); /* Slide out to the right */
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+/* Container that holds the image and form in a vertical stack */
+.content-container {
+  display: flex; /* Create a flexbox container */
+  flex-direction: column; /* Stack image and form vertically */
+  align-items: center; /* Center the content horizontally */
+  padding: 20px;
+  max-width: 600px; /* Adjust the width for a visually balanced design */
+  margin: 0 auto; /* Center the container horizontally */
+  gap: 20px; /* Add space between the image and form */
+}
+
+/* Styling for the image */
+.banner-image {
+  width: 90%; /* Make image take full width of its container */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 500px; /* Limit maximum size to maintain readability */
+  border-radius: 8px; /* Optional: rounded corners */
+  object-fit: cover; /* Ensure the image fills its container nicely */
+}
+
+/* Styling for the form container */
+.zip-code-card {
+  width: 100%;
+  max-width: 500px; /* Set a maximum width for the form for good layout */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px;
+  background-color: #fff; /* White background */
+  text-align: center;
+}
+
+/* Mobile responsiveness (this may not be necessary if stacked vertically) */
+@media (max-width: 768px) {
+  .content-container {
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  .banner-image,
+  .zip-code-card {
+    max-width: 90%; /* Adjust the maximum width for smaller devices */
+  }
+}
+
+/* Styling for LazyImage to match .banner-image */
+.lazy-image-wrapper {
+  width: 90%; /* Make image take full width of its container */
+  max-width: 500px; /* Limit maximum size to maintain readability */
+  border-radius: 8px; /* Optional: rounded corners */
+  overflow: hidden; /* Ensure both images stay within rounded borders */
+  position: relative; /* Set position relative to properly align children */
+  padding-top: 56.25%; /* This maintains a 16:9 aspect ratio */
+  height: 0; /* The height is determined by the padding-top */
+}
+
+.lazy-placeholder {
+  position: absolute; /* Make sure placeholder and image are at the same position */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Fill the entire container */
+  object-fit: cover; /* Ensure the placeholder fills its container nicely */
+  filter: blur(10px);
+  transition: opacity 0.5s ease-in-out; /* Smooth transition for fading out */
+}
+
+.lazy-image {
+  position: absolute; /* Make sure image sits on top of the placeholder */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Maintain container's height */
+  object-fit: cover; /* Ensure the final image fills its container nicely */
+  transition: opacity 0.5s ease-in-out; /* Smooth transition for fading in */
+  opacity: 0; /* Start with the image hidden */
+}

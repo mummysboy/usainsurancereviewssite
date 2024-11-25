@@ -1,0 +1,294 @@
+/* Reset to Prevent Default Margins and Overflow */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling on the entire document */
+  width: 100%;
+}
+
+/* General Page Styling */
+.offers-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  animation: fadeIn 0.8s ease-in-out;
+  box-sizing: border-box; /* Include padding within container width */
+  overflow: hidden; /* Ensure no child element causes overflow */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header Styling */
+.offers-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem; /* Padding to avoid text touching edges */
+  word-wrap: break-word; /* Prevent long text from causing overflow */
+}
+
+.offers-header h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.75rem;
+}
+
+.location-highlight {
+  color: #28a745;
+}
+
+.subtext {
+  font-weight: 500;
+  color: #555;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Offers List Styling */
+.offers-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Allow cards to wrap properly on small screens */
+  gap: 1.5rem; /* Spacing between cards */
+  margin-bottom: 2rem;
+  padding: 0 1rem; /* Padding to avoid touching edges */
+  width: 100%; /* Ensure the list never exceeds viewport width */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Offer Card Styling */
+.offer-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 320px;
+  width: calc(100% - 2rem); /* Full width minus padding */
+  box-sizing: border-box; /* Include padding in width */
+  overflow: hidden; /* Prevent overflowing content */
+}
+
+.offer-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.offer-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.offer-details h3 {
+  color: #333;
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem 0;
+  word-wrap: break-word;
+}
+
+.offer-details p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.offer-details ul {
+  padding-left: 1.25rem;
+  list-style-type: disc;
+  margin-bottom: 1.5rem;
+}
+
+.offer-details ul li {
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+/* Get Quote Button Styling */
+.get-quote-button {
+  background: linear-gradient(90deg, #2ebf4f, #28a745);
+  color: #ffffff;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  align-self: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Full-width button for mobile */
+  text-align: center;
+}
+
+.get-quote-button:hover {
+  background: linear-gradient(90deg, #28a745, #218838);
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.get-quote-button:active {
+  transform: scale(0.95);
+}
+
+/* Powered by Text Styling */
+.powered-by-text {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1rem;
+  color: #888;
+  padding: 0 1rem; /* Padding to avoid text touching edges */
+  box-sizing: border-box;
+}
+
+/* Responsive Styling for Smaller Devices */
+@media (max-width: 768px) {
+  .offers-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .offers-header .subtext {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .offer-card {
+    padding: 1.25rem;
+    max-width: 100%;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .offer-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .offer-details h3 {
+    font-size: 1.3rem;
+  }
+
+  .offer-details p,
+  .offer-details ul li {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .offers-page-container {
+    padding: 1rem;
+  }
+
+  .offers-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .get-quote-button {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .powered-by-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* Preserving Existing Offer Card Styling */
+
+/* MediaAlpha container */
+.mediaalpha-container {
+  position: relative;
+}
+
+/* Updated CSS to Style Star Overlay and Rating Text */
+.star-overlay {
+  font-size: 2rem !important; /* Adjust font size, add !important to force application */
+  z-index: 10; /* Ensure stars overlay other content */
+  pointer-events: none; /* Prevent stars from interfering with interactions */
+  background: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Light background to improve visibility */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling each star */
+.star-overlay .star {
+  margin: 0 4px; /* Increase space between stars to improve appearance */
+  transition: transform 0.3s ease;
+}
+
+.star-overlay .star.filled {
+  color: #ffd700 !important; /* Gold color for filled stars */
+}
+
+.star-overlay .star:not(.filled) {
+  color: #ddd !important; /* Light gray for unfilled stars */
+}
+
+/* Styles for non-featured offer hover effect */
+.non-featured-offer {
+  position: relative; /* Ensure this container is positioned relative */
+  overflow: hidden; /* Hide overflow for better visual effect */
+}
+
+.non-featured-offer::after {
+  content: "We recommend choosing a better option";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none; /* Prevent interaction with this message */
+  width: 90%;
+}
+
+.non-featured-offer:hover::after {
+  opacity: 1; /* Make the message visible on hover */
+}
+
+.non-featured-offer:hover {
+  filter: brightness(70%); /* Dim the entire card */
+}

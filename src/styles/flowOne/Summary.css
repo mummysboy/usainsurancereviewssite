@@ -1,0 +1,68 @@
+/* General styling for containers */
+.form-container {
+  width: 80%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff; /* White background for the form */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  border-radius: 8px;
+}
+
+/* Styling headers */
+h1 {
+  color: #242524; /* Darker green for headers for more contrast */
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: "Roboto", sans-serif; /* Custom font */
+}
+
+/* Summary details styling */
+.summary-details p {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background-color: #d4edda; /* Light green background for each data point */
+  border-radius: 4px;
+  color: #343a40; /* Darker color for readability */
+}
+
+/* Styling for the buttons container */
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+/* Primary button styling */
+button {
+  background-color: #28a745; /* Primary button color */
+  color: #ffffff; /* White text */
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-right: 1rem;
+}
+
+button:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Secondary button styling */
+.secondary-button {
+  background-color: #6c757d; /* Gray color for secondary actions */
+  color: #ffffff; /* White text */
+}
+
+.secondary-button:hover {
+  background-color: #5a6268; /* Darker gray on hover */
+}
