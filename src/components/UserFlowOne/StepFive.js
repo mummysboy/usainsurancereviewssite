@@ -1,4 +1,3 @@
-// src/components/StepFive.js
 import React, { useContext } from "react";
 import { FormDataContext } from "../../contexts/FormDataContext";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +19,13 @@ const StepFive = () => {
     // Add the 'green-active' class to make the button stay green
     button.classList.add("green-active");
 
-    // Set form data
+    // Convert "Yes" to `1` and "No" to `0`
+    const homeOwnershipValue = homeOwnership === "Yes" ? 1 : 0;
+
+    // Save to localStorage
+    localStorage.setItem("home_ownership", homeOwnershipValue);
+
+    // Update form data in context
     setFormData({ ...formData, homeOwnership });
 
     // Determine the next step based on home ownership and delay navigation

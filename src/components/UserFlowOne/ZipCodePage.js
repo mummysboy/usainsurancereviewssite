@@ -16,6 +16,7 @@ const ZipCodePage = () => {
   const { formData, setFormData } = useContext(FormDataContext);
   const [zipCode, setZipCode] = useState(formData.zipCode || "");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isGoogleTraffic, setIsGoogleTraffic] = useState(false);
 
   useEffect(() => {
     // Extract campaign parameters from URL or use localStorage
@@ -44,36 +45,42 @@ const ZipCodePage = () => {
       localStorage.setItem("click_id", clickId);
     }
 
-    // Meta Pixel Code Initialization
-    !(function (f, b, e, v, n, t, s) {
-      if (f.fbq) return;
-      n = f.fbq = function () {
-        n.callMethod
-          ? n.callMethod.apply(n, arguments)
-          : n.queue.push(arguments);
-      };
-      if (!f._fbq) f._fbq = n;
-      n.push = n;
-      n.loaded = !0;
-      n.version = "2.0";
-      n.queue = [];
-      t = b.createElement(e);
-      t.async = !0;
-      t.src = v;
-      s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s);
-    })(
-      window,
-      document,
-      "script",
-      "https://connect.facebook.net/en_US/fbevents.js"
-    );
+    // Check if the source is Google
+    const source = params.get("source");
+    if (source && source.toLowerCase() === "google") {
+      setIsGoogleTraffic(true);
+    } else {
+      // Meta Pixel Code Initialization (only if not Google traffic)
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
 
-    // Initialize the Pixel with your Pixel ID
-    fbq("init", "1102235601240222");
+      // Initialize the Pixel with your Pixel ID
+      fbq("init", "1102235601240222");
 
-    // Track page view when the component loads
-    fbq("track", "PageView");
+      // Track page view when the component loads
+      fbq("track", "PageView");
+    }
   }, [location]);
 
   const handleSubmit = (e) => {
@@ -89,7 +96,9 @@ const ZipCodePage = () => {
     setErrorMessage("");
 
     // Track conversion event when the user submits the form (ad click event)
-    fbq("track", "Lead", { value: 1.0, currency: "USD" });
+    if (!isGoogleTraffic) {
+      fbq("track", "Lead", { value: 1.0, currency: "USD" });
+    }
 
     // Add the green-active effect to the button
     const submitButton = e.target.querySelector(".get-started-button");

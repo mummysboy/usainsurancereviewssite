@@ -12,6 +12,15 @@ const OffersPage = () => {
 
     const zipCode =
       params.get("zip") || localStorage.getItem("zip_code") || "00000";
+    const insured = params.get("insured") || localStorage.getItem("insured");
+    const numVehicles =
+      params.get("vehicles") || localStorage.getItem("numVehicles");
+    const numDrivers =
+      params.get("drivers") || localStorage.getItem("numDrivers");
+    const homeOwnership =
+      params.get("home_ownership") ||
+      localStorage.getItem("home_ownership") ||
+      "00000";
     const campaignName =
       params.get("campaign_name") ||
       localStorage.getItem("campaign_name") ||
@@ -31,7 +40,11 @@ const OffersPage = () => {
     script.innerHTML = `
       var MediaAlphaExchange = {
          "data": {
-            "zip": "${zipCode}"
+            "zip": "${zipCode}",
+            "currently_insured": "${insured}",
+            "vehicles[]": "${numVehicles}",
+            "drivers[]": "${numDrivers}",
+            "home_ownership": "${homeOwnership}"
          },
          "placement_id": "fD4petSMP9HeM2IAYex88RKg0siJ_Q",
          "sub_1": "${campaignName}",
@@ -61,11 +74,6 @@ const OffersPage = () => {
           return; // If stars are already present, skip adding
         }
 
-        // Determine if this is a featured offer or not
-        const isFeatured = offerElement.classList.contains(
-          "mav-partner__featured"
-        );
-
         // Create the star overlay
         const starOverlay = document.createElement("div");
         starOverlay.className = "star-overlay";
@@ -88,11 +96,6 @@ const OffersPage = () => {
         // Append the star overlay to the offer card (the full container)
         offerElement.style.position = "relative"; // Ensure the offer container is positioned relative
         offerElement.appendChild(starOverlay);
-
-        // Add a hover effect for non-featured offers
-        if (!isFeatured) {
-          offerElement.classList.add("non-featured-offer"); // Add a class for styling non-featured offers
-        }
       });
     };
 

@@ -1,4 +1,3 @@
-// src/components/StepThree.js
 import React, { useContext } from "react";
 import { FormDataContext } from "../../contexts/FormDataContext";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +19,24 @@ const StepThree = () => {
     // Add the 'green-active' class to make the button stay green
     button.classList.add("green-active");
 
-    // Set form data
+    // Parse the number of drivers
+    const numDriversInt = parseInt(numDrivers, 10);
+
+    // Generate an array of drivers
+    const drivers = Array.from({ length: numDriversInt }, (_, i) => ({
+      id: i + 1,
+      name: "",
+      age: "",
+      experience: "",
+    }));
+
+    // Save the array of drivers in localStorage
+    localStorage.setItem("drivers", JSON.stringify(drivers));
+
+    // Save the total number of drivers in localStorage
+    localStorage.setItem("numDrivers", numDriversInt);
+
+    // Set form data in context
     setFormData({ ...formData, numDrivers });
 
     // Delay the navigation to show the button effect

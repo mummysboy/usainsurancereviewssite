@@ -21,6 +21,19 @@ import LoadingDeals from "./components/UserFlowOne/LoadingDeals";
 import LanderOffersPage from "./components/UserFlowOne/LanderOffersPage";
 import "./styles/flowOne/App.css";
 import "./styles/flowOne/Form.css";
+import "./styles/flowTwo/ZipCodePage.css";
+// Flow Two
+import ZipCodePage2 from "./components/UserFlowTwo/ZipCodePage2";
+import StepOne2 from "./components/UserFlowTwo/StepOne2";
+import StepTwo2 from "./components/UserFlowTwo/StepTwo2";
+import StepThree2 from "./components/UserFlowTwo/StepThree2";
+import StepFour2 from "./components/UserFlowTwo/StepFour2";
+import StepFive2 from "./components/UserFlowTwo/StepFive2";
+import StepSix2 from "./components/UserFlowTwo/StepSix2";
+import Summary2 from "./components/UserFlowTwo/Summary2";
+import OffersPage2 from "./components/UserFlowTwo/OffersPage2";
+import LoadingDeals2 from "./components/UserFlowTwo/LoadingDeals2";
+import LanderOffersPage2 from "./components/UserFlowTwo/LanderOffersPage2";
 
 function App() {
   return (
@@ -65,6 +78,19 @@ function PageRoutes() {
           <Route path="/loading-deals" element={<LoadingDeals />} />
           <Route path="/offers" element={<OffersPage />} />
           <Route path="/landerOffers" element={<LanderOffersPage />} />
+
+          {/* UserFlowTwo routes */}
+          <Route path="/2" element={<ZipCodePage2 />} />
+          <Route path="/step-one2" element={<StepOne2 />} />
+          <Route path="/step-two2" element={<StepTwo2 />} />
+          <Route path="/step-three2" element={<StepThree2 />} />
+          <Route path="/step-four2" element={<StepFour2 />} />
+          <Route path="/step-five2" element={<StepFive2 />} />
+          <Route path="/step-six2" element={<StepSix2 />} />
+          <Route path="/summary2" element={<Summary2 />} />
+          <Route path="/loading-deals2" element={<LoadingDeals2 />} />
+          <Route path="/offers2" element={<OffersPage2 />} />
+          <Route path="/landerOffers2" element={<LanderOffersPage2 />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>

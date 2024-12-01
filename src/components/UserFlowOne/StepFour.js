@@ -1,4 +1,3 @@
-// src/components/StepFour.js
 import React, { useContext } from "react";
 import { FormDataContext } from "../../contexts/FormDataContext";
 import { useNavigate } from "react-router-dom";
@@ -20,8 +19,25 @@ const StepFour = () => {
     // Add the 'green-active' class to make the button stay green
     button.classList.add("green-active");
 
-    // Set form data
-    setFormData({ ...formData, numVehicles });
+    // Determine the number of vehicles to save
+    const totalVehicles = numVehicles === "Yes" ? 2 : 1;
+
+    // Generate an array of vehicles
+    const vehicles = Array.from({ length: totalVehicles }, (_, i) => ({
+      id: i + 1,
+      make: "",
+      model: "",
+      year: "",
+    }));
+
+    // Save the array of vehicles in localStorage
+    localStorage.setItem("vehicles", JSON.stringify(vehicles));
+
+    // Save the total number of vehicles in localStorage
+    localStorage.setItem("numVehicles", totalVehicles);
+
+    // Update the form data in context
+    setFormData({ ...formData, numVehicles: totalVehicles });
 
     // Delay the navigation to show the button effect
     setTimeout(() => {
@@ -49,7 +65,7 @@ const StepFour = () => {
         <div className="options-container">
           <button
             className={`option-button ${
-              formData.numVehicles === "Yes" ? "selected" : ""
+              formData.numVehicles === 2 ? "selected" : ""
             }`}
             onClick={(event) => handleNext("Yes", event)}
           >
@@ -57,7 +73,7 @@ const StepFour = () => {
           </button>
           <button
             className={`option-button ${
-              formData.numVehicles === "No" ? "selected" : ""
+              formData.numVehicles === 1 ? "selected" : ""
             }`}
             onClick={(event) => handleNext("No", event)}
           >
