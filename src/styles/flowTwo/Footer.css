@@ -1,0 +1,55 @@
+.footer {
+  background-color: #222222; /* Dark background for contrast */
+  color: #fff; /* Light text for readability */
+  padding: 20px 0;
+  font-size: 0.9rem;
+}
+
+.footer .footer-columns {
+  display: flex;
+  justify-content: space-between; /* Align columns across the footer */
+  flex-wrap: wrap; /* Ensure columns stack on smaller screens */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px; /* Add some padding for spacing */
+}
+
+.footer .footer-columns div {
+  margin-bottom: 15px; /* Add spacing between columns */
+}
+
+.footer a {
+  color: #fff; /* White links for better readability */
+  text-decoration: none; /* Remove underline from links */
+  margin: 0 10px; /* Add spacing between links */
+  transition: color 0.3s ease; /* Smooth hover transition */
+}
+
+.footer a:hover {
+  color: #cc1818; /* Highlight color on hover */
+}
+
+.footer p {
+  text-align: center; /* Center the copyright text */
+  font-size: 0.8rem; /* Slightly smaller font for less prominence */
+  margin: 10px 0 0;
+  line-height: 1.5;
+}
+
+.footer-columns div:last-child {
+  flex-basis: 100%; /* Make last column span full width */
+  text-align: center; /* Center-align the content */
+}
+
+@media (max-width: 768px) {
+  .footer .footer-columns {
+    flex-direction: column; /* Stack columns on small screens */
+    align-items: center;
+    text-align: center; /* Center all content for smaller screens */
+  }
+
+  .footer a {
+    display: block; /* Stack links for better mobile UX */
+    margin: 5px 0;
+  }
+}

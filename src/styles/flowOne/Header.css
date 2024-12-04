@@ -3,7 +3,7 @@
   width: 100%;
   padding: 1rem 2rem;
   background-color: #1e2d3d; /* Maintain the dark background for a professional look */
-  color: #ffffff; /* Text color is white for contrast */
+  color: #ffffffc3; /* Text color is white for contrast */
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -26,7 +26,7 @@
   background-image: url("../../images/flag.jpeg"); /* Path to your banner image */
   background-size: cover; /* Cover the whole container */
   background-position: center; /* Center the image */
-  opacity: 0.4; /* Set opacity to make the image slightly faded */
+  opacity: 0.8; /* Set opacity to make the image slightly faded */
   z-index: -1; /* Place the image behind the header content */
 }
 

@@ -10,6 +10,7 @@ export const sendConversionData = () => {
         campaign_name: localStorage.getItem("campaign_name"),
         campaign_id: localStorage.getItem("campaign_id"),
         click_id: localStorage.getItem("click_id"),
+        dsp_name: localStorage.getItem("dsp_name"),
       });
       console.log("Conversion data sent successfully");
     } else {

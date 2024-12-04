@@ -13,28 +13,28 @@
       name="description"
       content="Compare insurance quotes and save up to 20%. Fill out our simple form to get matched with the best insurance plans in your area. Trusted by thousands of customers."
     />
-    <!-- 
-  MediaAlpha Insurance Ad Integration Script:
-  This script enables the integration of MediaAlpha advertisements into the web app.
-  It is used to load and serve targeted insurance ads dynamically on relevant pages.
-  Make sure this script is loaded in the <head> to ensure the ads are ready when required.
--->
-    <script src="//insurance.mediaalpha.com/js/serve.js"></script>
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
+    <!-- Google Ads Global Site Tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=AW-1007684690"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      // Google Ads ID
+      gtag("config", "AW-1007684690");
+    </script>
+
+    <!-- MediaAlpha Insurance Ad Integration Script -->
+    <script src="//insurance.mediaalpha.com/js/serve.js"></script>
+
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
     <!-- Add Google Fonts link here -->
     <link
@@ -47,6 +47,8 @@
     />
 
     <title>USA Insurance Reviews</title>
+
+    <!-- Microsoft Clarity Tracking Script -->
     <script type="text/javascript">
       (function (c, l, a, r, i, t, y) {
         c[a] =

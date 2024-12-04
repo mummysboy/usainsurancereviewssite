@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../UserFlowOne/Header";
+import Footer from "../UserFlowOne/Footer";
 import "../../styles/flowOne/OffersPage.css";
 import { CSSTransition } from "react-transition-group";
 
@@ -8,8 +8,9 @@ const OffersPage = () => {
   const [cityName, setCityName] = useState("your area");
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
+    const params = new URLSearchParams(window.location.search);
 
+    // Extract all the parameters you need
     const zipCode =
       params.get("zip") || localStorage.getItem("zip_code") || "00000";
     const insured = params.get("insured") || localStorage.getItem("insured");
@@ -33,35 +34,117 @@ const OffersPage = () => {
       params.get("click_id") ||
       localStorage.getItem("click_id") ||
       "default_click";
+    const dsp_name = params.get("dsp_name") || localStorage.getItem("dsp_name");
 
-    // Load the MediaAlpha ad script with campaign data
-    const script = document.createElement("script");
-    script.type = "text/javascript";
-    script.innerHTML = `
-      var MediaAlphaExchange = {
-         "data": {
-            "zip": "${zipCode}",
-            "currently_insured": "${insured}",
-            "vehicles[]": "${numVehicles}",
-            "drivers[]": "${numDrivers}",
-            "home_ownership": "${homeOwnership}"
-         },
-         "placement_id": "fD4petSMP9HeM2IAYex88RKg0siJ_Q",
-         "sub_1": "${campaignName}",
-         "sub_2": "${campaignId}",
-         "sub_3": "${clickId}",
-         "type": "ad_unit",
-         "version": 17
-      };
-      MediaAlphaExchange__load('mediaalpha_placeholder');
-    `;
-    document.body.appendChild(script);
+    // Create the ad configuration object
+    const mediaAlphaConfig = {
+      data: {
+        zip: zipCode,
+        currently_insured: insured,
+        "vehicles[]": numVehicles,
+        "drivers[]": numDrivers,
+        home_ownership: homeOwnership,
+      },
+      placement_id:
+        dsp_name === "google"
+          ? "k7ImWb8FHOIBYxJQPmKSAUiyBQx_kg"
+          : "fD4petSMP9HeM2IAYex88RKg0siJ_Q",
+      sub_1: campaignName,
+      sub_2: campaignId,
+      sub_3: clickId,
+      type: "ad_unit",
+      version: 17,
+    };
+
+    // Function to load the MediaAlpha script dynamically
+    const loadMediaAlphaScript = () => {
+      return new Promise((resolve, reject) => {
+        // Check if the script is already loaded
+        if (document.getElementById("mediaalpha-script")) {
+          resolve(); // If it's already loaded, just resolve immediately
+          return;
+        }
+
+        const mediaAlphaScript = document.createElement("script");
+        mediaAlphaScript.id = "mediaalpha-script";
+        mediaAlphaScript.src = "//insurance.mediaalpha.com/js/serve.js";
+        mediaAlphaScript.async = true;
+
+        mediaAlphaScript.onload = () => {
+          console.log("MediaAlpha script loaded successfully.");
+          resolve(); // Script has been loaded successfully
+        };
+        mediaAlphaScript.onerror = (error) => {
+          console.error("Failed to load MediaAlpha script.", error);
+          reject(error); // There was an error loading the script
+        };
+
+        document.body.appendChild(mediaAlphaScript);
+      });
+    };
+
+    // Load the MediaAlpha script and configure the ad
+    const setupAdUnit = async () => {
+      try {
+        await loadMediaAlphaScript();
+
+        // Wait for MediaAlphaExchange__load function to become available
+        if (typeof window.MediaAlphaExchange__load === "function") {
+          window.MediaAlphaExchange = mediaAlphaConfig;
+          window.MediaAlphaExchange__load("mediaalpha_placeholder");
+        } else {
+          console.error("MediaAlphaExchange__load function is not defined.");
+        }
+      } catch (error) {
+        console.error(
+          "An error occurred while setting up the MediaAlpha ad:",
+          error
+        );
+      }
+    };
+
+    setupAdUnit();
+
+    // Add click event listener for conversion tracking
+    const addConversionTracking = () => {
+      const mediaalphaPlaceholder = document.getElementById(
+        "mediaalpha_placeholder"
+      );
+
+      if (mediaalphaPlaceholder) {
+        mediaalphaPlaceholder.addEventListener("click", () => {
+          if (dsp_name === "google") {
+            // Fire Google Conversion Pixel
+            if (typeof window.gtag_report_conversion === "function") {
+              window.gtag_report_conversion();
+            } else {
+              console.warn(
+                "Google conversion tracking function is not available."
+              );
+            }
+          } else {
+            // Fire Facebook Lead Pixel
+            if (typeof window.fbq === "function") {
+              window.fbq("track", "Lead");
+            } else {
+              console.warn(
+                "Facebook pixel tracking function is not available."
+              );
+            }
+          }
+        });
+      }
+    };
+
+    // Add the conversion tracking functionality after the ad is loaded
+    addConversionTracking();
 
     // Fetch city name from ZIP code
     if (zipCode !== "00000") {
       fetchCityName(zipCode);
     }
 
+    // Star ratings function for offers
     const addStarRatings = () => {
       // Select the specific elements with the provided class names
       const offerElements = document.querySelectorAll(
@@ -146,7 +229,6 @@ const OffersPage = () => {
               aggregator in {cityName} that can get you the best possible deal.
             </p>
             Click View My Quote to see the best prices.
-            <p></p>
           </div>
 
           <div className="offers-list">

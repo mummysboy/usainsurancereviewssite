@@ -46,9 +46,10 @@ const ZipCodePage = () => {
     }
 
     // Check if the source is Google
-    const source = params.get("source");
-    if (source && source.toLowerCase() === "google") {
+    const dsp_name = params.get("dsp_name");
+    if (dsp_name && dsp_name.toLowerCase() === "google") {
       setIsGoogleTraffic(true);
+      localStorage.setItem("dsp_name", "google");
     } else {
       // Meta Pixel Code Initialization (only if not Google traffic)
       !(function (f, b, e, v, n, t, s) {
