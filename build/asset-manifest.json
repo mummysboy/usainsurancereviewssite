@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fbfe80fb.css",
+    "main.js": "/static/js/main.b3c04866.js",
+    "static/media/flag.jpeg": "/static/media/flag.149469ff0d8d51031b8c.jpeg",
+    "static/media/insurance1.jpeg": "/static/media/insurance1.2bd48aa19d34220dadca.jpeg",
+    "static/media/crash.jpeg": "/static/media/crash.81251c0189f348d89e97.jpeg",
+    "index.html": "/index.html",
+    "main.fbfe80fb.css.map": "/static/css/main.fbfe80fb.css.map",
+    "main.b3c04866.js.map": "/static/js/main.b3c04866.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fbfe80fb.css",
+    "static/js/main.b3c04866.js"
+  ]
+}
